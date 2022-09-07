@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "nextamplify",
+    "serviceName": "AppSync",
+    "defaultAuthType": {
+      "mode": "AMAZON_COGNITO_USER_POOLS",
+      "cognitoUserPoolId": "authnextamplify9333cd03"
+    },
+    "conflictResolution": {
+      "defaultResolutionStrategy": {
+        "type": "AUTOMERGE"
+      }
+    },
+    "additionalAuthTypes": [
+      {
+        "mode": "API_KEY",
+        "expirationTime": 365,
+        "apiKeyExpirationDate": "2023-08-31T04:13:53.223Z",
+        "keyDescription": "default"
+      }
+    ]
+  }
+}

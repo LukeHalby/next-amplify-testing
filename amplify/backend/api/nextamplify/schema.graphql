@@ -1,0 +1,53 @@
+type Message @model @auth(rules: [{allow: private}]) {
+  id: ID!
+  body: String!
+  userId: ID
+  from: User @hasOne(fields: ["userId"])
+  chatroomId: ID
+  chatroom: Chatroom @hasOne(fields: ["chatroomId"])
+  createdAt: AWSDateTime
+}
+
+type Chatroom @model @auth(rules: [{allow: private}]) {
+  id: ID!
+  name: String!
+  clientId: ID
+  client: Client @hasOne(fields: ["clientId"])
+}
+
+type Client @model @auth(rules: [{allow: private}]) {
+  id: ID!
+  name: String!
+}
+
+type User @model @auth(rules: [
+    {allow: owner, ownerField: "authId"}
+]) {
+  id: ID!
+  authId: String
+  name: String! @index(name: "byName", queryField: "getUserByName")
+  email: String!
+  pushToken: String
+}
+
+type ChatroomUser @model @auth(rules: [
+    {allow: owner, ownerField: "authId"}
+]) {
+  id: ID!
+  authId: String
+  userId: ID @index(name: "byUser", queryField: "getChatroomsByUser")
+  user: User @hasOne(fields: ["userId"])
+  chatroomId: ID @index(name: "byChatroom", queryField: "getUsersByChatroom")
+  chatroom: Chatroom @hasOne(fields: ["chatroomId"])
+}
+
+type ClientUser @model @auth(rules: [
+    {allow: owner, ownerField: "authId"}
+]) {
+  id: ID!
+  authId: String
+  userId: ID @index(name: "byUser", queryField: "getClientsByUser")
+  user: User @hasOne(fields: ["userId"])
+  clientId: ID @index(name: "byClient", queryField: "getUsersByClient")
+  client: Client @hasOne(fields: ["clientId"])
+}
