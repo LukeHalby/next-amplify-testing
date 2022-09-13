@@ -1898,10 +1898,6 @@ export type OnDeleteClientSubscription = {
   } | null,
 };
 
-export type OnCreateUserSubscriptionVariables = {
-  authId?: string | null,
-};
-
 export type OnCreateUserSubscription = {
   onCreateUser?:  {
     __typename: "User",
@@ -1916,10 +1912,6 @@ export type OnCreateUserSubscription = {
     _deleted?: boolean | null,
     _lastChangedAt: number,
   } | null,
-};
-
-export type OnUpdateUserSubscriptionVariables = {
-  authId?: string | null,
 };
 
 export type OnUpdateUserSubscription = {
@@ -1938,10 +1930,6 @@ export type OnUpdateUserSubscription = {
   } | null,
 };
 
-export type OnDeleteUserSubscriptionVariables = {
-  authId?: string | null,
-};
-
 export type OnDeleteUserSubscription = {
   onDeleteUser?:  {
     __typename: "User",
@@ -1956,10 +1944,6 @@ export type OnDeleteUserSubscription = {
     _deleted?: boolean | null,
     _lastChangedAt: number,
   } | null,
-};
-
-export type OnCreateChatroomUserSubscriptionVariables = {
-  authId?: string | null,
 };
 
 export type OnCreateChatroomUserSubscription = {
@@ -2001,10 +1985,6 @@ export type OnCreateChatroomUserSubscription = {
   } | null,
 };
 
-export type OnUpdateChatroomUserSubscriptionVariables = {
-  authId?: string | null,
-};
-
 export type OnUpdateChatroomUserSubscription = {
   onUpdateChatroomUser?:  {
     __typename: "ChatroomUser",
@@ -2042,10 +2022,6 @@ export type OnUpdateChatroomUserSubscription = {
     _deleted?: boolean | null,
     _lastChangedAt: number,
   } | null,
-};
-
-export type OnDeleteChatroomUserSubscriptionVariables = {
-  authId?: string | null,
 };
 
 export type OnDeleteChatroomUserSubscription = {
@@ -2087,10 +2063,6 @@ export type OnDeleteChatroomUserSubscription = {
   } | null,
 };
 
-export type OnCreateClientUserSubscriptionVariables = {
-  authId?: string | null,
-};
-
 export type OnCreateClientUserSubscription = {
   onCreateClientUser?:  {
     __typename: "ClientUser",
@@ -2129,10 +2101,6 @@ export type OnCreateClientUserSubscription = {
   } | null,
 };
 
-export type OnUpdateClientUserSubscriptionVariables = {
-  authId?: string | null,
-};
-
 export type OnUpdateClientUserSubscription = {
   onUpdateClientUser?:  {
     __typename: "ClientUser",
@@ -2169,10 +2137,6 @@ export type OnUpdateClientUserSubscription = {
     _deleted?: boolean | null,
     _lastChangedAt: number,
   } | null,
-};
-
-export type OnDeleteClientUserSubscriptionVariables = {
-  authId?: string | null,
 };
 
 export type OnDeleteClientUserSubscription = {

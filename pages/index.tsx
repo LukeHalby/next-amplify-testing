@@ -4,15 +4,19 @@ import { Client, User, ClientUser, ChatroomUser, Chatroom } from '../src/models'
 import { Amplify, Auth, Hub, AuthModeStrategyType } from 'aws-amplify'
 import { CognitoHostedUIIdentityProvider } from "@aws-amplify/auth/lib/types";
 import React from 'react'
-import { DataStore } from '@aws-amplify/datastore'
+import { DataStore, Predicates } from '@aws-amplify/datastore'
 import startAmplifyConfig from '../src/utils/startAmplifyConfig';
 import ContainerLayout from '../src/layouts/ContainerLayout';
 import AppLayout from '../src/layouts/AppLayout';
 import ChatPopout from '../src/components/ChatPopout';
+import getAuthToken from '../src/utils/getAuthToken';
 
 const federatedIdName = "Auth0"
 const AUTH_SERVER_CLIENT_ID = "f36807be-4a06-4247-898f-0b850b8f37d5"
 const AUTH_SERVER_CHAT_NAME = "Auth Server Support Chat"
+
+//@ts-ignore
+//window.LOG_LEVEL = "DEBUG"
 
 export default function Home() {
   const [authUser, setAuthUser] = React.useState<any>()
@@ -28,20 +32,22 @@ export default function Home() {
   React.useEffect(() => {
     async function startAmplify() {
       try {
-        await startAmplifyConfig()
-        console.log("finished config")
-        setAmplifyReady(true)
+        let success = await startAmplifyConfig()
+        if (success) {
+          console.log("finished config")
+          setAmplifyReady(true)
+        }
       } catch(e) {
         console.error("Error congifuring amplify: ", e)
       }
     }
-
+  
     if (!amplifyReady) {
       startAmplify()
     }
   }, [])
 
-  React.useEffect(() => {
+  /*React.useEffect(() => {
     if (amplifyReady) {
       // Get current user
       Auth.currentAuthenticatedUser()
@@ -86,13 +92,14 @@ export default function Home() {
     return Auth.currentSession()
       .then(session => session)
       .catch(err => console.log(err));
-  }
+  }*/
 
   React.useEffect(() => {
     async function updateDataStoreUser() {
       if (authUser && amplifyReady && !isLoading) {
         setIsLoading(true)
         const user = await DataStore.query(User)
+        console.log(user)
         setIsLoading(false)
 
         if (user.length === 0) {
@@ -100,6 +107,7 @@ export default function Home() {
 
           setIsLoading(true)
           const newUser = await DataStore.save(new User({
+            authId: getAuthToken(),
             name: authUser.username,
             email: authUser.attributes.email,
             pushToken: expoPushToken
@@ -130,6 +138,7 @@ export default function Home() {
         if (clientUser.length === 0) {
           setIsLoading(true)
           const connection = await DataStore.save(new ClientUser({
+            authId: getAuthToken(),
             userId: customUser.id,
             clientId: AUTH_SERVER_CLIENT_ID
           }))
@@ -175,6 +184,7 @@ export default function Home() {
 
           setIsLoading(true)
           const newSupportConnection = await DataStore.save(new ChatroomUser({
+            authId: getAuthToken(),
             userId: customUser.id,
             chatroomId: newSupportRoom.id
           }))
@@ -196,9 +206,19 @@ export default function Home() {
   }, [customUser, client, amplifyReady])
 
   async function initiateSignOut() {
+    /*await DataStore.clear()
+    console.log("cleared")
+    Auth.signOut()*/
+    setAuthUser(undefined)
+    setCustomUser(undefined)
+    setClient(undefined)
+    setChatroom(undefined)
     await DataStore.clear()
     console.log("cleared")
-    Auth.signOut()
+    await DataStore.stop()
+    console.log("stopped")
+    await DataStore.start()
+    console.log("started")
   }
 
   return (
@@ -247,7 +267,11 @@ export default function Home() {
           <Button
             //@ts-ignore
             onClick={() => { 
-              Auth.federatedSignIn({ provider: CognitoHostedUIIdentityProvider.Cognito }) 
+              //Auth.federatedSignIn({ provider: CognitoHostedUIIdentityProvider.Cognito }) 
+              setAuthUser({
+                username: 'lukehalbytesting',
+                attributes: { email: 'dne@gmail.com' }
+              })
             }}
           >
             Sign In

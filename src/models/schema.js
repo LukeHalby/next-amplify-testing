@@ -87,7 +87,7 @@ export const schema = {
                     "properties": {
                         "rules": [
                             {
-                                "allow": "private",
+                                "allow": "custom",
                                 "operations": [
                                     "create",
                                     "update",
@@ -177,10 +177,7 @@ export const schema = {
                     "properties": {
                         "rules": [
                             {
-                                "provider": "userPools",
-                                "ownerField": "authId",
-                                "allow": "owner",
-                                "identityClaim": "cognito:username",
+                                "allow": "custom",
                                 "operations": [
                                     "create",
                                     "update",
@@ -260,7 +257,7 @@ export const schema = {
                     "properties": {
                         "rules": [
                             {
-                                "allow": "private",
+                                "allow": "custom",
                                 "operations": [
                                     "create",
                                     "update",
@@ -319,7 +316,7 @@ export const schema = {
                     "properties": {
                         "rules": [
                             {
-                                "allow": "private",
+                                "allow": "custom",
                                 "operations": [
                                     "create",
                                     "update",
@@ -440,10 +437,7 @@ export const schema = {
                     "properties": {
                         "rules": [
                             {
-                                "provider": "userPools",
-                                "ownerField": "authId",
-                                "allow": "owner",
-                                "identityClaim": "cognito:username",
+                                "allow": "custom",
                                 "operations": [
                                     "create",
                                     "update",
@@ -564,10 +558,7 @@ export const schema = {
                     "properties": {
                         "rules": [
                             {
-                                "provider": "userPools",
-                                "ownerField": "authId",
-                                "allow": "owner",
-                                "identityClaim": "cognito:username",
+                                "allow": "custom",
                                 "operations": [
                                     "create",
                                     "update",

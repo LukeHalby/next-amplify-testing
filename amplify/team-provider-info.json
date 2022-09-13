@@ -12,8 +12,11 @@
       "AmplifyAppId": "d181irvjzmbk55"
     },
     "categories": {
-      "auth": {
-        "nextamplify9333cd03": {}
+      "function": {
+        "graphQlLambdaAuthorizer748829d5": {
+          "deploymentBucketName": "amplify-nextamplify-dev-101519-deployment",
+          "s3Key": "amplify-builds/graphQlLambdaAuthorizer748829d5-593352656e7332367367-build.zip"
+        }
       }
     }
   }

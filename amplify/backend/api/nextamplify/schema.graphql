@@ -1,4 +1,4 @@
-type Message @model @auth(rules: [{allow: private}]) {
+type Message @model @auth(rules: [{allow: custom}]) {
   id: ID!
   body: String!
   userId: ID
@@ -8,21 +8,19 @@ type Message @model @auth(rules: [{allow: private}]) {
   createdAt: AWSDateTime
 }
 
-type Chatroom @model @auth(rules: [{allow: private}]) {
+type Chatroom @model @auth(rules: [{allow: custom}]) {
   id: ID!
   name: String!
   clientId: ID
   client: Client @hasOne(fields: ["clientId"])
 }
 
-type Client @model @auth(rules: [{allow: private}]) {
+type Client @model @auth(rules: [{allow: custom}]) {
   id: ID!
   name: String!
 }
 
-type User @model @auth(rules: [
-    {allow: owner, ownerField: "authId"}
-]) {
+type User @model @auth(rules: [{allow: custom}]) {
   id: ID!
   authId: String
   name: String! @index(name: "byName", queryField: "getUserByName")
@@ -30,9 +28,7 @@ type User @model @auth(rules: [
   pushToken: String
 }
 
-type ChatroomUser @model @auth(rules: [
-    {allow: owner, ownerField: "authId"}
-]) {
+type ChatroomUser @model @auth(rules: [{allow: custom}]) {
   id: ID!
   authId: String
   userId: ID @index(name: "byUser", queryField: "getChatroomsByUser")
@@ -41,9 +37,7 @@ type ChatroomUser @model @auth(rules: [
   chatroom: Chatroom @hasOne(fields: ["chatroomId"])
 }
 
-type ClientUser @model @auth(rules: [
-    {allow: owner, ownerField: "authId"}
-]) {
+type ClientUser @model @auth(rules: [{allow: custom}]) {
   id: ID!
   authId: String
   userId: ID @index(name: "byUser", queryField: "getClientsByUser")

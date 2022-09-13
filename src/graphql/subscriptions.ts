@@ -222,8 +222,8 @@ export const onDeleteClient = /* GraphQL */ `
   }
 `;
 export const onCreateUser = /* GraphQL */ `
-  subscription OnCreateUser($authId: String) {
-    onCreateUser(authId: $authId) {
+  subscription OnCreateUser {
+    onCreateUser {
       id
       authId
       name
@@ -238,8 +238,8 @@ export const onCreateUser = /* GraphQL */ `
   }
 `;
 export const onUpdateUser = /* GraphQL */ `
-  subscription OnUpdateUser($authId: String) {
-    onUpdateUser(authId: $authId) {
+  subscription OnUpdateUser {
+    onUpdateUser {
       id
       authId
       name
@@ -254,8 +254,8 @@ export const onUpdateUser = /* GraphQL */ `
   }
 `;
 export const onDeleteUser = /* GraphQL */ `
-  subscription OnDeleteUser($authId: String) {
-    onDeleteUser(authId: $authId) {
+  subscription OnDeleteUser {
+    onDeleteUser {
       id
       authId
       name
@@ -270,8 +270,8 @@ export const onDeleteUser = /* GraphQL */ `
   }
 `;
 export const onCreateChatroomUser = /* GraphQL */ `
-  subscription OnCreateChatroomUser($authId: String) {
-    onCreateChatroomUser(authId: $authId) {
+  subscription OnCreateChatroomUser {
+    onCreateChatroomUser {
       id
       authId
       userId
@@ -307,8 +307,8 @@ export const onCreateChatroomUser = /* GraphQL */ `
   }
 `;
 export const onUpdateChatroomUser = /* GraphQL */ `
-  subscription OnUpdateChatroomUser($authId: String) {
-    onUpdateChatroomUser(authId: $authId) {
+  subscription OnUpdateChatroomUser {
+    onUpdateChatroomUser {
       id
       authId
       userId
@@ -344,8 +344,8 @@ export const onUpdateChatroomUser = /* GraphQL */ `
   }
 `;
 export const onDeleteChatroomUser = /* GraphQL */ `
-  subscription OnDeleteChatroomUser($authId: String) {
-    onDeleteChatroomUser(authId: $authId) {
+  subscription OnDeleteChatroomUser {
+    onDeleteChatroomUser {
       id
       authId
       userId
@@ -381,8 +381,8 @@ export const onDeleteChatroomUser = /* GraphQL */ `
   }
 `;
 export const onCreateClientUser = /* GraphQL */ `
-  subscription OnCreateClientUser($authId: String) {
-    onCreateClientUser(authId: $authId) {
+  subscription OnCreateClientUser {
+    onCreateClientUser {
       id
       authId
       userId
@@ -417,8 +417,8 @@ export const onCreateClientUser = /* GraphQL */ `
   }
 `;
 export const onUpdateClientUser = /* GraphQL */ `
-  subscription OnUpdateClientUser($authId: String) {
-    onUpdateClientUser(authId: $authId) {
+  subscription OnUpdateClientUser {
+    onUpdateClientUser {
       id
       authId
       userId
@@ -453,8 +453,8 @@ export const onUpdateClientUser = /* GraphQL */ `
   }
 `;
 export const onDeleteClientUser = /* GraphQL */ `
-  subscription OnDeleteClientUser($authId: String) {
-    onDeleteClientUser(authId: $authId) {
+  subscription OnDeleteClientUser {
+    onDeleteClientUser {
       id
       authId
       userId
